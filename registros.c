@@ -15,13 +15,13 @@ struct informacion{
 struct profesorado{
 	char numeroEmpleado[13];
 	struct informacion DatosProfesor;
-}prof;
+}prof[20];
 
 struct alumnado{
 	char numeroCuenta[13];
 	char promedio[5];
 	struct informacion DatosEstudiante;
-}estudiante;
+}estudiante[20];
 
 int main(void){
 	int op;
@@ -36,23 +36,24 @@ int main(void){
 	puts("2.-Alumnos");
 	scanf("%i", &op);
 
-	for(int i=1;i<=folios;i++){
+	for(int i=0;i<folios;i++){
 		//Profesor
 		if(op == 1){
 			printf("\nNumero de empleado:");
 			fflush(stdin);
-			fgets(prof.numeroEmpleado,13,stdin);
+			fgets(prof[i].numeroEmpleado,13,stdin);
 			printf("Nombre(s): ");
 			fflush(stdin);
-			fgets(prof.DatosProfesor.nombre, 25, stdin);
+			fgets(prof[i].DatosProfesor.nombre, 25, stdin);
 			printf("Apellido Paterno: ");
 			fflush(stdin);
-			fgets(prof.DatosProfesor.Paterno, 25, stdin);
+			fgets(prof[i].DatosProfesor.Paterno, 25, stdin);
 			printf("Apellido Materno: ");
 			fflush(stdin);
-			fgets(prof.DatosProfesor.Materno, 25, stdin);
-			printf("\n\nNumero de empleado: %s",prof.numeroEmpleado);
-			printf("\n\tProfesor(a):\n%s%s%s", prof.DatosProfesor.nombre, prof.DatosProfesor.Paterno, prof.DatosProfesor.Materno);   
+			fgets(prof[i].DatosProfesor.Materno, 25, stdin);
+			//Se tiene que imprimir como arreglo
+			//printf("\n\nNumero de empleado: %s",prof.numeroEmpleado);
+			//printf("\n\tProfesor(a):\n%s%s%s", prof.DatosProfesor.nombre, prof.DatosProfesor.Paterno, prof.DatosProfesor.Materno);   
 
 		//Alumnos
 		}else if(op == 2){
@@ -73,6 +74,11 @@ int main(void){
 	}else{
 		printf("Dame una opcion valida");
 	}
+	//Impresión
+        for (int i=0; i<num_registros; i++){
+                printf("\n\tID: %s \tNombre:%s \tApellido Paterno: %s \tApellido Materno: %s", prof[i].numeroEmpleado, prof[i].DatosProfesor.nombre, prof[i].DatosProfesor.apPaterno, prof[i].DatosProfesor.apMaterno);
+        }
+
 	}
 	return 0;
 }
